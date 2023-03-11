@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getDataFromBucket } from '@/domain/storage'
+import { Reaction } from '@/domain/data.types'
 
 type ReactionCounts = { [key: string]: number }
 
