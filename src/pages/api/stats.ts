@@ -1,51 +1,25 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
+import { getDataFromBucket } from '@/domain/storage'
 
-type Data = {
-  name: any
-}
-
-interface Reaction {
-  message_id: string
-  author: number
-  reaction_type: string
-}
+type ReactionCounts = { [key: string]: number }
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<ReactionCounts>
 ) {
-  let s3data = await GetDataFromBucket<Reaction[]>('reactions.json')
+  let data = await getDataFromBucket<Reaction[]>('reactions.json')
 
-  if (s3data === null) {
+  if (data === null) {
     res.status(500)
     return
   }
 
-  let reactCounts: { [key: string]: number } = {}
+  let reactCounts: ReactionCounts = {}
 
-  for (let react of s3data) {
+  for (let react of data) {
     reactCounts[react.author] = (reactCounts[react.author] || 0) + 1
   }
 
-  res.status(200).json({ name: reactCounts })
-}
-
-async function GetDataFromBucket<T>(file: string): Promise<T | null> {
-  const client = new S3Client({ region: 'us-east-1' })
-
-  const command = new GetObjectCommand({
-    Bucket: 'gm-dashboard-bucket',
-    Key: file,
-  })
-
-  const response = await client.send(command)
-  const str = await response.Body?.transformToString()
-
-  if (str === undefined) {
-    return null
-  }
-
-  return JSON.parse(str)
+  res.status(200).json(reactCounts)
 }

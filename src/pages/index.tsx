@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { TitleBar } from '@/components/title-bar/title-bar'
 import { TestChart } from '@/components/test-chart/test-chart'
+import { getDataFromBucket } from '@/domain/storage'
 
-export default function Home() {
+export default function Home(props: any) {
   return (
     <>
       <Head>
