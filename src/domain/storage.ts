@@ -2,7 +2,6 @@ import { GetObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
 export async function getDataFromBucket<T>(file: string): Promise<T | null> {
   let client: S3Client
-  console.log(process.env.PROD)
   if (process.env.PROD === 'true') {
     client = new S3Client({
       region: 'us-east-1',

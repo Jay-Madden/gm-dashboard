@@ -48,14 +48,14 @@
 
   margin-bottom: 8px;
 
-  ::before {
+  &::before {
     border-bottom-left-radius: 0.8rem 0.7rem;
     border-right: 1rem solid #248bf5;
     right: -0.35rem;
     transform: translate(0, -0.1rem);
   }
 
-  ::after {
+  &::after {
     background-color: #fff;
     border-bottom-left-radius: 0.5rem;
     right: -40px;
@@ -83,14 +83,14 @@
 
   margin: 4px;
 
-  ::before {
+  &::before {
     border-bottom-right-radius: 0.8rem 0.7rem;
     border-left: 1rem solid #e5e5ea;
     left: -0.35rem;
     transform: translate(0, -0.1rem);
   }
 
-  ::after {
+  &::after {
     background-color: #fff;
     border-bottom-right-radius: 0.5rem;
     left: 20px;
