@@ -1,6 +1,6 @@
-import React from 'react'
-import useSWR from 'swr'
-import style from './test-chart.module.scss'
+import React from "react"
+import useSWR from "swr"
+import style from "./test-chart.module.scss"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,8 +9,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js'
-import { Bar } from 'react-chartjs-2'
+} from "chart.js"
+import { Bar } from "react-chartjs-2"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -18,24 +18,24 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: "top" as const,
     },
     title: {
       display: true,
-      text: 'GM Reactions',
+      text: "GM Reactions",
     },
   },
 }
 const fetcher = (url: any) => fetch(url).then((r) => r.json())
 
 export function TestChart() {
-  const { data, error, isLoading } = useSWR('/api/stats', fetcher)
+  const { data, error, isLoading } = useSWR("/api/stats", fetcher)
 
   if (isLoading) {
     return (
       <>
         <section>
-          <div className={style.loading + ' ' + style.loading08}>
+          <div className={style.loading + " " + style.loading08}>
             <span data-text="L">L</span>
             <span data-text="O">O</span>
             <span data-text="A">A</span>
@@ -53,9 +53,9 @@ export function TestChart() {
     labels: Object.keys(data),
     datasets: [
       {
-        label: 'Reactions',
+        label: "Reactions",
         data: Object.values(data).map((x) => Number(x)),
-        backgroundColor: 'rgba(45, 85, 255, 0.5)',
+        backgroundColor: "rgba(45, 85, 255, 0.5)",
       },
     ],
   }

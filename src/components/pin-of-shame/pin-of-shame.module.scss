@@ -9,7 +9,7 @@
   border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
-  font-family: 'SanFrancisco';
+  font-family: "SanFrancisco";
   font-size: 1.25rem;
   margin: 0 auto 1rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -29,7 +29,7 @@
 .imessage p::before,
 .imessage p::after {
   bottom: -0.1rem;
-  content: '';
+  content: "";
   height: 1rem;
   position: absolute;
 }
@@ -37,7 +37,7 @@
 .person {
   font-size: small;
   color: lightslategrey;
-  margin-left: 10px;
+  margin-left: 20px;
   margin: -5;
 }
 
@@ -99,14 +99,14 @@
   }
 }
 
-p[class^='from-'].emoji::before {
+p[class^="from-"].emoji::before {
   content: none;
 }
 
 @font-face {
-  font-family: 'SanFrancisco';
-  src: url('https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2')
-      format('woff2'),
-    url('https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff')
-      format('woff');
+  font-family: "SanFrancisco";
+  src: url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2")
+      format("woff2"),
+    url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff")
+      format("woff");
 }
