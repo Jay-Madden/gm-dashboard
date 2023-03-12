@@ -1,6 +1,6 @@
 import React from 'react'
 import useSWR from 'swr'
-import style from './TestChart.module.scss'
+import style from './test-chart.module.scss'
 import {
   Chart as ChartJS,
   CategoryScale,

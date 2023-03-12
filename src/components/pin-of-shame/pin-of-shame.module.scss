@@ -1,0 +1,112 @@
+.title {
+  text-align: center;
+  margin: 10px;
+}
+
+.imessage {
+  background-color: #fff;
+  border: 1px solid #e5e5ea;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  font-family: 'SanFrancisco';
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  max-width: 600px;
+  padding: 0.5rem 1.5rem;
+}
+
+.imessage p {
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem 0.875rem;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.imessage p::before,
+.imessage p::after {
+  bottom: -0.1rem;
+  content: '';
+  height: 1rem;
+  position: absolute;
+}
+
+.person {
+  font-size: small;
+  color: lightslategrey;
+  margin-left: 10px;
+  margin: -5;
+}
+
+.fromme {
+  align-self: flex-end;
+  background-color: #248bf5;
+  color: #fff;
+
+  margin-bottom: 8px;
+
+  ::before {
+    border-bottom-left-radius: 0.8rem 0.7rem;
+    border-right: 1rem solid #248bf5;
+    right: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+
+  ::after {
+    background-color: #fff;
+    border-bottom-left-radius: 0.5rem;
+    right: -40px;
+    transform: translate(-30px, -2px);
+    width: 10px;
+  }
+
+  ~ {
+    margin: 0.25rem 0 0;
+  }
+}
+
+.fromme z ~ p.from-me:not(:last-child) {
+  margin: 0.25rem 0 0;
+}
+
+.fromme ~ p.from-me:last-child {
+  margin-bottom: 0.5rem;
+}
+
+.fromthem {
+  align-items: flex-start;
+  background-color: #e5e5ea;
+  color: #000;
+
+  margin: 4px;
+
+  ::before {
+    border-bottom-right-radius: 0.8rem 0.7rem;
+    border-left: 1rem solid #e5e5ea;
+    left: -0.35rem;
+    transform: translate(0, -0.1rem);
+  }
+
+  ::after {
+    background-color: #fff;
+    border-bottom-right-radius: 0.5rem;
+    left: 20px;
+    transform: translate(-30px, -2px);
+    width: 10px;
+  }
+}
+
+p[class^='from-'].emoji::before {
+  content: none;
+}
+
+@font-face {
+  font-family: 'SanFrancisco';
+  src: url('https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2')
+      format('woff2'),
+    url('https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff')
+      format('woff');
+}
