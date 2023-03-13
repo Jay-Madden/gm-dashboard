@@ -1,6 +1,6 @@
-import React from "react"
-import useSWR from "swr"
-import style from "./test-chart.module.scss"
+import React from "react";
+import useSWR from "swr";
+import style from "./test-chart.module.scss";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,10 +9,17 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js"
-import { Bar } from "react-chartjs-2"
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export const options = {
   responsive: true,
@@ -25,11 +32,11 @@ export const options = {
       text: "GM Reactions",
     },
   },
-}
-const fetcher = (url: any) => fetch(url).then((r) => r.json())
+};
+const fetcher = (url: any) => fetch(url).then((r) => r.json());
 
 export function TestChart() {
-  const { data, error, isLoading } = useSWR("/api/stats", fetcher)
+  const { data, error, isLoading } = useSWR("/api/stats", fetcher);
 
   if (isLoading) {
     return (
@@ -46,7 +53,7 @@ export function TestChart() {
           </div>
         </section>
       </>
-    )
+    );
   }
 
   let parseData = {
@@ -58,7 +65,7 @@ export function TestChart() {
         backgroundColor: "rgba(45, 85, 255, 0.5)",
       },
     ],
-  }
+  };
   return (
     <>
       <div className={style.container}>
@@ -70,5 +77,5 @@ export function TestChart() {
         </div>
       </div>
     </>
-  )
+  );
 }

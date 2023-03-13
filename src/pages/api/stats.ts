@@ -1,26 +1,26 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next"
-import { getDataFromBucket } from "@/domain/storage"
-import { Reaction } from "@/domain/data.types"
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getDataFromBucket } from "@/domain/storage";
+import { Reaction } from "@/domain/data.types";
 
-type ReactionCounts = { [key: string]: number }
+type ReactionCounts = { [key: string]: number };
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ReactionCounts>
 ) {
-  let data = await getDataFromBucket<Reaction[]>("reactions.json")
+  let data = await getDataFromBucket<Reaction[]>("reactions.json");
 
   if (data === null) {
-    res.status(500)
-    return
+    res.status(500);
+    return;
   }
 
-  let reactCounts: ReactionCounts = {}
+  let reactCounts: ReactionCounts = {};
 
   for (let react of data) {
-    reactCounts[react.author] = (reactCounts[react.author] || 0) + 1
+    reactCounts[react.author] = (reactCounts[react.author] || 0) + 1;
   }
 
-  res.status(200).json(reactCounts)
+  res.status(200).json(reactCounts);
 }

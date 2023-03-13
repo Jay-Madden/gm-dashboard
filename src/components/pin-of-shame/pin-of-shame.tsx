@@ -1,4 +1,4 @@
-import style from "./pin-of-shame.module.scss"
+import style from "./pin-of-shame.module.scss";
 export function PinOfShame() {
   return (
     <>
@@ -17,5 +17,5 @@ export function PinOfShame() {
         </div>
       </div>
     </>
-  )
+  );
 }
