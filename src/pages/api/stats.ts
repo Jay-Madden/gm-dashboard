@@ -12,7 +12,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ReactionCounts>
 ) {
-  if (cachedReactions === null || cacheTime < Date.now()) {
+  const invalidateTime = Date.now() - 1000 * 60;
+  if (cachedReactions === null || cacheTime < invalidateTime) {
+    console.log("Invalidating cache and requesting data");
     cachedReactions = await getDataFromBucket<Reaction[]>("reactions.json");
     cacheTime = Date.now();
   }
