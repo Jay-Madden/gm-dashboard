@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint && yarn prettier src -w",
+    "lint-quiet": "next lint && yarn prettier src -w --loglevel warn",
     "prepare": "husky install"
   },
   "dependencies": {
