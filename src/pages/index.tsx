@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { TitleBar } from "@/components/title-bar/title-bar";
-import { TestChart } from "@/components/test-chart/test-chart";
+import { TotalReactionsChart } from "@/components/total-reactions-chart/TotalReactionsChart";
 import { getDataFromBucket } from "@/domain/storage";
 import { PinOfShame } from "@/components/pin-of-shame/pin-of-shame";
 
@@ -16,7 +16,7 @@ export default function Home(props: any) {
       <main>
         <TitleBar />
         <PinOfShame />
-        <TestChart />
+        <TotalReactionsChart />
       </main>
     </>
   );

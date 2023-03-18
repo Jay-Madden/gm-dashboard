@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import style from "./test-chart.module.scss";
+import style from "./total-reactions-chart.module.scss";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -35,7 +35,7 @@ export const options = {
   },
 };
 
-export function TestChart() {
+export function TotalReactionsChart() {
   const { data, isLoading } = useSWR("/api/stats", fetcher);
 
   if (isLoading) {
