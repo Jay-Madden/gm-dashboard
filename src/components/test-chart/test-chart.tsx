@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { fetcher } from "@/fetch-helpers";
 
 ChartJS.register(
   CategoryScale,
@@ -33,7 +34,6 @@ export const options = {
     },
   },
 };
-const fetcher = (url: any) => fetch(url).then((r) => r.json());
 
 export function TestChart() {
   const { data, error, isLoading } = useSWR("/api/stats", fetcher);

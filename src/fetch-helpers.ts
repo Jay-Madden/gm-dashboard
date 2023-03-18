@@ -1,3 +1,1 @@
-export const fetcher = (...args: any) =>
-  // @ts-ignore
-  fetch(...args).then((res) => res.json());
+export const fetcher = (url: any) => fetch(url).then((r) => r.json());
