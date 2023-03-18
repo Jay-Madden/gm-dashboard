@@ -1,11 +1,5 @@
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import winston from "winston";
-
-const logger = winston.createLogger({
-  transports: [
-    new winston.transports.Console(),
-  ],
-});
+import { logger } from "@/logging";
 
 const cacheMap = new Map<string, { data: any; time: number }>();
 
