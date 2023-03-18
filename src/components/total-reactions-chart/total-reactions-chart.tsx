@@ -20,7 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-)
+);
 
 export const options = {
   responsive: true,
@@ -33,7 +33,7 @@ export const options = {
       text: "GM Reactions",
     },
   },
-}
+};
 
 export function TotalReactionsChart() {
   const { data, isLoading } = useSWR("/api/stats", fetcher);
