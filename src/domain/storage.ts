@@ -1,6 +1,18 @@
 import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import winston from "winston";
 
-export async function getDataFromBucket<T>(file: string): Promise<T | null> {
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console(),
+  ],
+});
+
+const cacheMap = new Map<string, { data: any; time: number }>();
+
+export async function getDataFromBucket<T>(
+  file: string,
+  cacheCheckTime: number
+): Promise<T | null> {
   let client: S3Client;
   if (process.env.PROD === "true") {
     client = new S3Client({
@@ -12,6 +24,16 @@ export async function getDataFromBucket<T>(file: string): Promise<T | null> {
     });
   } else {
     client = new S3Client({ region: "us-east-1" });
+  }
+
+  if (checkCacheStatus(file, cacheCheckTime)) {
+    const cacheEntry = cacheMap.get(file)!;
+    logger.info(
+      `Found cache entry for file ${file} expiring in ${
+        cacheEntry.time - cacheCheckTime
+      }`
+    );
+    return cacheEntry.data;
   }
 
   const command = new GetObjectCommand({
@@ -26,5 +48,17 @@ export async function getDataFromBucket<T>(file: string): Promise<T | null> {
     return null;
   }
 
-  return JSON.parse(str);
+  const parsedData = JSON.parse(str);
+  setCacheValue(file, parsedData);
+
+  return parsedData;
+}
+
+function setCacheValue(key: string, data: any) {
+  cacheMap.set(key, { data: data, time: Date.now() });
+}
+
+function checkCacheStatus(file: string, invalidTime: number): boolean {
+  const cache = cacheMap.get(file);
+  return !(cache === undefined || cache.time < invalidTime);
 }

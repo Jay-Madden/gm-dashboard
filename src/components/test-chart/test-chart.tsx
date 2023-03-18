@@ -36,7 +36,7 @@ export const options = {
 };
 
 export function TestChart() {
-  const { data, error, isLoading } = useSWR("/api/stats", fetcher);
+  const { data, isLoading } = useSWR("/api/stats", fetcher);
 
   if (isLoading) {
     return (

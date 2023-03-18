@@ -1,23 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getDataFromBucket } from "@/domain/storage";
 import { Reaction } from "@/domain/data.types";
+import { minutesAgo } from "@/time-helpers";
 
 type ReactionCounts = { [key: string]: number };
-
-let cachedReactions: Reaction[] | null = null;
-
-let cacheTime = Date.now();
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ReactionCounts>
 ) {
-  const invalidateTime = Date.now() - 1000 * 60;
-  if (cachedReactions === null || cacheTime < invalidateTime) {
-    console.log("Invalidating cache and requesting data");
-    cachedReactions = await getDataFromBucket<Reaction[]>("reactions.json");
-    cacheTime = Date.now();
-  }
+  let cachedReactions = await getDataFromBucket<Reaction[]>(
+    "reactions.json",
+    minutesAgo(1)
+  );
 
   if (cachedReactions === null) {
     res.status(500);
