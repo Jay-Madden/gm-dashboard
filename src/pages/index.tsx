@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { TitleBar } from "@/components/title-bar/title-bar";
-import { TotalReactionsChart } from "@/components/total-reactions-chart/TotalReactionsChart";
+import { TotalReactionsChart } from "@/components/total-reactions-chart/total-reactions-chart";
 import { getDataFromBucket } from "@/domain/storage";
 import { PinOfShame } from "@/components/pin-of-shame/pin-of-shame";
 
