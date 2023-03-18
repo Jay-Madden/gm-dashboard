@@ -4,6 +4,7 @@ export function PinOfShame() {
     <>
       <div>
         <h1 className={style.title}>📌 Pin of shame 📌</h1>
+
         <div className={style.imessage}>
           <div className={style.person}>Emily</div>
           <p className={style.fromthem}>
