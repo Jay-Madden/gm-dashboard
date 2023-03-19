@@ -1,6 +1,5 @@
 import React from "react";
 import useSWR from "swr";
-import style from "./total-reactions-chart.module.scss";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -60,7 +59,7 @@ export function TotalReactionsChart() {
   };
   return (
     <>
-      <Bar className={style.reactions} options={options} data={parseData} />
+      <Bar options={options} data={parseData} />
     </>
   );
 }

@@ -5,7 +5,7 @@ import {
   ReactionCounts,
 } from "@/domain/message-data/data.types";
 import { minutesAgo } from "@/time-helpers";
-import {getUsers} from "@/domain/users/users-data";
+import { getUsers } from "@/domain/users/users-data";
 
 export async function getReactionsByUser(
   daysBack: number
@@ -32,8 +32,12 @@ export async function getReactionsByUser(
     if (reaction !== undefined) {
       reaction.count++;
     } else {
-      let user = users?.find(x => x.phoneNumber === react.author) || null;
-      reactCounts.push({author: user?.name || null, phoneNumber: react.author, count: 1 });
+      let user = users?.find((x) => x.phoneNumber === react.author) || null;
+      reactCounts.push({
+        author: user?.name || null,
+        phoneNumber: react.author,
+        count: 1,
+      });
     }
   }
 

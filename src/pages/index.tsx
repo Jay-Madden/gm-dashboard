@@ -8,15 +8,15 @@ export default function Home(props: any) {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>GM-Dashboard app</title>
         <meta name="description" content="GM Dashboard" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <TitleBar />
-        <PinOfShame />
         <AddUser />
+        <PinOfShame />
         <Charts />
       </main>
     </>

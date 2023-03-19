@@ -6,10 +6,10 @@ export function Charts() {
   return (
     <>
       <div className={style.container}>
-        <div className={style.parent}>
+        <div className={style.reactions}>
           <TotalReactionsChart />
         </div>
-        <div className={style.parent}></div>
+        <div></div>
       </div>
     </>
   );

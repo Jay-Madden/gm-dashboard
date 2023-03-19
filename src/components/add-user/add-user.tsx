@@ -1,11 +1,11 @@
 import style from "./add-user.module.scss";
 import React, { useState } from "react";
-import {reactCounts, usersAdd} from "@/routes";
+import { reactCounts, usersAdd } from "@/routes";
 import { Methods } from "@/api-methods";
-import {useSWRConfig} from "swr";
+import { useSWRConfig } from "swr";
 
 export function AddUser() {
-  const { mutate } = useSWRConfig()
+  const { mutate } = useSWRConfig();
 
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -39,7 +39,7 @@ export function AddUser() {
   return (
     <>
       <div className={style.container}>
-        <h2>Input your name</h2>
+        <h2>If you dont see your name input it here</h2>
         <label>
           Name:{" "}
           <input

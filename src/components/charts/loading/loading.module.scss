@@ -1,56 +1,19 @@
-.loading {
-  font-size: 84px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  position: fixed; /* or absolute */
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  span {
-    display: inline-block;
-    margin: 0 -0.05em;
-  }
+.loader {
+  width: 100px;
+  height: 100px;
+  border: 5px solid #000;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
-.loading08 {
-  span {
-    position: relative;
-    color: rgba(#000, 0.2);
-    animation: loading08-parent 5s infinite;
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: attr(data-text);
-      color: #fff;
-      opacity: 0;
-      animation: loading08-child 5s infinite;
-    }
-    @for $i from 1 through 6 {
-      &:nth-child(#{$i + 1})::after {
-        animation-delay: #{$i * 0.2}s;
-      }
-    }
-  }
-}
-@keyframes loading08-parent {
-  0%,
-  35%,
-  100% {
-    color: rgba(#000, 0.7);
-  }
-  60%,
-  80% {
-    color: #fff;
-  }
-}
-@keyframes loading08-child {
+@keyframes rotation {
   0% {
-    opacity: 1;
+    transform: rotate(0deg);
   }
-  25%,
   100% {
-    opacity: 0;
+    transform: rotate(360deg);
   }
 }
