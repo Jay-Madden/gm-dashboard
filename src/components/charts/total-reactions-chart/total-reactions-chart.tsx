@@ -49,7 +49,7 @@ export function TotalReactionsChart() {
   data.sort((a, b) => (a.count < b.count ? 1 : -1));
 
   let parseData = {
-    labels: data.map((x) => x.author),
+    labels: data.map((x) => x.author || x.phoneNumber),
     datasets: [
       {
         label: "Reactions",

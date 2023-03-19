@@ -5,6 +5,7 @@ import {
   ReactionCounts,
 } from "@/domain/message-data/data.types";
 import { minutesAgo } from "@/time-helpers";
+import {getUsers} from "@/domain/users/users-data";
 
 export async function getReactionsByUser(
   daysBack: number
@@ -18,6 +19,8 @@ export async function getReactionsByUser(
     return null;
   }
 
+  const users = await getUsers();
+
   const reactCounts: ReactionCounts[] = [];
 
   for (const react of data) {
@@ -25,11 +28,12 @@ export async function getReactionsByUser(
       continue;
     }
 
-    let reaction = reactCounts.find((x) => x.author === react.author);
+    let reaction = reactCounts.find((x) => x.phoneNumber === react.author);
     if (reaction !== undefined) {
       reaction.count++;
     } else {
-      reactCounts.push({ author: react.author, count: 1 });
+      let user = users?.find(x => x.phoneNumber === react.author) || null;
+      reactCounts.push({author: user?.name || null, phoneNumber: react.author, count: 1 });
     }
   }
 
@@ -48,8 +52,6 @@ export async function getMessages(
     return null;
   }
 
-  console.log(messages.length);
-
   if (daysBack !== null) {
     messages = messages.filter((x) => x.date > daysBack);
   }
@@ -59,7 +61,6 @@ export async function getMessages(
   for (const message of messages) {
     messageMap.set(message.id, message);
   }
-  console.log(messageMap.size);
 
   return messageMap;
 }

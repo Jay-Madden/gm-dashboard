@@ -15,7 +15,8 @@ export interface Reaction {
 }
 
 export interface ReactionCounts {
-  author: number;
+  author: string | null;
+  phoneNumber: number;
   count: number;
 }
 

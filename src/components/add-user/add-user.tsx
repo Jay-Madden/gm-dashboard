@@ -1,9 +1,12 @@
 import style from "./add-user.module.scss";
 import React, { useState } from "react";
-import { usersAdd } from "@/routes";
+import {reactCounts, usersAdd} from "@/routes";
 import { Methods } from "@/api-methods";
+import {useSWRConfig} from "swr";
 
 export function AddUser() {
+  const { mutate } = useSWRConfig()
+
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [status, setStatus] = useState("");
@@ -28,6 +31,8 @@ export function AddUser() {
       setStatus("Failed");
     }
     setSubmitDisabled(false);
+
+    await mutate(reactCounts);
 
     setTimeout(() => setStatus(""), 3000);
   }
