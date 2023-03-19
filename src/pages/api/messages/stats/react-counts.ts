@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { ReactionCounts } from "@/domain/message-data/data.types";
 import { getReactionsByUser } from "@/domain/message-data/message-data";
 import { daysAgo } from "@/time-helpers";
+import { HttpCodes } from "@/http-codes";
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,9 +11,9 @@ export default async function handler(
   const reacts = await getReactionsByUser(daysAgo(30));
 
   if (reacts === null) {
-    res.status(500);
+    res.status(HttpCodes.internal_server_error);
     return;
   }
 
-  res.status(200).json(reacts);
+  res.status(HttpCodes.ok).json(reacts);
 }

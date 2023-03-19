@@ -1,4 +1,4 @@
-import { Bucket, getDataFromBucket } from "@/domain/storage";
+import { BucketFile, getDataFromBucket } from "@/domain/storage";
 import {
   Reaction,
   Message,
@@ -10,7 +10,7 @@ export async function getReactionsByUser(
   daysBack: number
 ): Promise<ReactionCounts[] | null> {
   const data = await getDataFromBucket<Reaction[]>(
-    Bucket.reactions,
+    BucketFile.reactions,
     minutesAgo(1)
   );
 
@@ -40,7 +40,7 @@ export async function getMessages(
   daysBack: number | null = null
 ): Promise<Map<string, Message> | null> {
   let messages = await getDataFromBucket<Message[]>(
-    Bucket.messages,
+    BucketFile.messages,
     minutesAgo(1)
   );
 
