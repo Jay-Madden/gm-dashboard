@@ -7,7 +7,7 @@ export function AddUser() {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [status, setStatus] = useState("");
-  const [submitDisabled, setSubmitDisabled] = useState(false)
+  const [submitDisabled, setSubmitDisabled] = useState(false);
 
   async function submit() {
     setSubmitDisabled(true);
@@ -17,6 +17,9 @@ export function AddUser() {
     let res = await fetch(usersAdd, {
       method: Methods.post,
       body: JSON.stringify({ name: name, phoneNumber: phoneNumber }),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     if (res.ok) {
@@ -26,7 +29,7 @@ export function AddUser() {
     }
     setSubmitDisabled(false);
 
-    setTimeout(() => setStatus(""), 10000);
+    setTimeout(() => setStatus(""), 3000);
   }
   return (
     <>
@@ -48,7 +51,11 @@ export function AddUser() {
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </label>
-        <button className={style.submit} onClick={submit} disabled={submitDisabled}>
+        <button
+          className={style.submit}
+          onClick={submit}
+          disabled={submitDisabled || name === "" || phoneNumber === ""}
+        >
           Submit
         </button>
         {status}

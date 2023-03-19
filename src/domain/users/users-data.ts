@@ -5,6 +5,7 @@ import {
 } from "@/domain/storage";
 import { minutesAgo } from "@/time-helpers";
 import { User } from "@/domain/users/users.types";
+import { logger } from "@/logging";
 
 export async function addUser(name: string, phone: number): Promise<boolean> {
   const users = await getUsers();
@@ -12,6 +13,10 @@ export async function addUser(name: string, phone: number): Promise<boolean> {
   if (users === null) {
     return false;
   }
+
+  logger.info(
+    `Adding user to user.json with name ${name} and phone number: ${phone}`
+  );
 
   users.push({ name, phoneNumber: phone });
 
