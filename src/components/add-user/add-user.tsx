@@ -1,6 +1,6 @@
 import style from "./add-user.module.scss";
 import React, { useState } from "react";
-import { usersAdd } from "@/pages/api/routes";
+import { usersAdd } from "@/routes";
 import { Methods } from "@/api-methods";
 
 export function AddUser() {

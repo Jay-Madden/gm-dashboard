@@ -12,7 +12,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { fetcher } from "@/fetch-helpers";
-import { reactCounts } from "@/pages/api/routes";
+import { reactCounts } from "@/routes";
 import { Loading } from "@/components/charts/loading/loading";
 import { ReactionCounts } from "@/domain/message-data/data.types";
 
