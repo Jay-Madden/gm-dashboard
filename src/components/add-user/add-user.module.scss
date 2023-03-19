@@ -1,8 +1,13 @@
-.container {
+.formContainer {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 10px;
+}
+
+.position {
+  display: flex;
+  justify-content: center;
 }
 
 .submit {

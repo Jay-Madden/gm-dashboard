@@ -38,32 +38,34 @@ export function AddUser() {
   }
   return (
     <>
-      <div className={style.container}>
-        <h2>If you dont see your name input it here</h2>
-        <label>
-          Name:{" "}
-          <input
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          Phone Number (Starting with 1) :
-          <input
-            name="phoneNumber"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </label>
-        <button
-          className={style.submit}
-          onClick={submit}
-          disabled={submitDisabled || name === "" || phoneNumber === ""}
-        >
-          Submit
-        </button>
-        {status}
+      <div className={style.position}>
+        <div className={style.formContainer}>
+          <h2>If you dont see your name input it here</h2>
+          <label>
+            Name:{" "}
+            <input
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label>
+            Phone Number (Starting with 1) :
+            <input
+              name="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </label>
+          <button
+            className={style.submit}
+            onClick={submit}
+            disabled={submitDisabled || name === "" || phoneNumber === ""}
+          >
+            Submit
+          </button>
+          {status}
+        </div>
       </div>
     </>
   );
