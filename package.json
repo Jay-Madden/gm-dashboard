@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && yarn prettier src -w",
-    "lint-quiet": "next lint && yarn prettier src -w --loglevel warn"
+    "lint": "next lint --fix && yarn prettier src -w",
+    "lint-quiet": "next lint --fix && yarn prettier src -w --loglevel warn"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.289.0",
@@ -16,6 +16,7 @@
     "@types/react-dom": "18.0.11",
     "aws-sdk": "^2.1333.0",
     "chart.js": "^4.2.1",
+    "csv-parse": "^5.3.6",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "prettier": "^2.8.4",
     "sass": "^1.59.2"
   }
