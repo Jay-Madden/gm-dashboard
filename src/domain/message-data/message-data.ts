@@ -3,9 +3,50 @@ import {
   Reaction,
   Message,
   ReactionCounts,
+  WordOfInterestCount,
 } from "@/domain/message-data/data.types";
 import { minutesAgo } from "@/time-helpers";
 import { getUsers } from "@/domain/users/users-data";
+
+export const wordsOfInterest = [
+  "fuck",
+  "shit",
+  "ass",
+  "damn",
+  "bitch",
+  "cunt",
+  "cum",
+  "piss",
+  "tits",
+  "cock",
+  "dick",
+  "pussy",
+];
+
+export async function getMessages(
+  daysBack: number | null = null
+): Promise<Map<string, Message> | null> {
+  let messages = await getDataFromBucket<Message[]>(
+    BucketFile.messages,
+    minutesAgo(1)
+  );
+
+  if (messages === null) {
+    return null;
+  }
+
+  if (daysBack !== null) {
+    messages = messages.filter((x) => x.date > daysBack);
+  }
+
+  const messageMap = new Map<string, Message>();
+
+  for (const message of messages) {
+    messageMap.set(message.id, message);
+  }
+
+  return messageMap;
+}
 
 export async function getReactionsByUser(
   daysBack: number
@@ -44,13 +85,18 @@ export async function getReactionsByUser(
   return reactCounts;
 }
 
-export async function getMessages(
+export async function getWordsOfInterestCount(
   daysBack: number | null = null
-): Promise<Map<string, Message> | null> {
+): Promise<WordOfInterestCount | null> {
   let messages = await getDataFromBucket<Message[]>(
     BucketFile.messages,
     minutesAgo(1)
   );
+
+  const counts: WordOfInterestCount = {};
+  for (const w of wordsOfInterest) {
+    counts[w] = 0;
+  }
 
   if (messages === null) {
     return null;
@@ -60,11 +106,24 @@ export async function getMessages(
     messages = messages.filter((x) => x.date > daysBack);
   }
 
-  const messageMap = new Map<string, Message>();
-
   for (const message of messages) {
-    messageMap.set(message.id, message);
+    for (const word of wordsOfInterest) {
+      if (message.text.includes(word)) {
+        counts[word]++;
+      }
+    }
   }
 
-  return messageMap;
+  const toDel: string[] = [];
+  for (let c of Object.entries(counts)) {
+    if (c[1] === 0) {
+      toDel.push(c[0]);
+    }
+  }
+
+  for (let d of toDel) {
+    delete counts[d];
+  }
+
+  return counts;
 }

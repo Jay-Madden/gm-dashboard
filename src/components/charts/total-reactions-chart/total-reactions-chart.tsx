@@ -11,7 +11,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { fetcher } from "@/fetch-helpers";
-import { reactCounts } from "@/routes";
+import { reactCount } from "@/routes";
 import { Loading } from "@/components/charts/loading/loading";
 import { ReactionCounts } from "@/domain/message-data/data.types";
 
@@ -39,7 +39,7 @@ export const options = {
 };
 
 export function TotalReactionsChart() {
-  let { data, isLoading } = useSWR<ReactionCounts[]>(reactCounts, fetcher);
+  let { data, isLoading } = useSWR<ReactionCounts[]>(reactCount, fetcher);
 
   if (isLoading || data === undefined) {
     return <Loading />;

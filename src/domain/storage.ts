@@ -66,7 +66,9 @@ export async function getDataFromBucket<T>(
     Key: file,
   });
 
-  logger.info(`Sending GetObject command to bucket: ${bucket} for file: ${file}`)
+  logger.info(
+    `Sending GetObject command to bucket: ${bucket} for file: ${file}`
+  );
 
   const response = await client.send(command);
   const str = await response.Body?.transformToString();

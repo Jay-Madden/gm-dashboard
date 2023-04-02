@@ -1,6 +1,6 @@
 import style from "./add-user.module.scss";
 import React, { useState } from "react";
-import { reactCounts, usersAdd } from "@/routes";
+import { reactCount, usersAdd } from "@/routes";
 import { Methods } from "@/api-methods";
 import { useSWRConfig } from "swr";
 
@@ -32,7 +32,7 @@ export function AddUser() {
     }
     setSubmitDisabled(false);
 
-    await mutate(reactCounts);
+    await mutate(reactCount);
 
     setTimeout(() => setStatus(""), 3000);
   }

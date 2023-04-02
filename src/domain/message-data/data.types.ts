@@ -28,3 +28,5 @@ export interface Message {
   associated_message_guid: string;
   thread_originator_guid: string;
 }
+
+export type WordOfInterestCount = { [key: string]: number };
