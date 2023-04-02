@@ -57,7 +57,6 @@ export function WordsOfInterestChart() {
       rand = getRandomColor();
     }
 
-    console.log(bkgColors);
     bkgColors.push(rand);
   }
 
