@@ -32,7 +32,7 @@ export async function setDataInBucket<T>(
   const command = new PutObjectCommand({
     Bucket: bucket,
     Key: file,
-    Body: JSON.stringify(data),
+    Body: typeof data === 'string' ? data : JSON.stringify(data),
   });
 
   logger.info(`Setting data in file: ${file}}`);
