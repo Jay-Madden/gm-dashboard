@@ -5,7 +5,7 @@ import { fetcher } from "@/fetch-helpers";
 import { wordsOfInterestCount } from "@/routes";
 import { Loading } from "@/components/charts/loading/loading";
 import { Pie } from "react-chartjs-2";
-import { WordOfInterestCount } from "@/domain/message-data/data.types";
+import { WordOfInterestCount } from "@/domain/message-data/message.types";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { colorArray } from "@/components/charts/words-of-interest-chart/colors";
 

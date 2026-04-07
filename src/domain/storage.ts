@@ -14,11 +14,12 @@ export enum BucketFile {
   reactions = "reactions.csv",
   messages = "messages.csv",
   users = "users.json",
+  keys = "keys.json",
 }
 
-export async function setDataInBucket(
+export async function setDataInBucket<T>(
   file: BucketFile,
-  data: string
+  data: T
 ): Promise<boolean> {
   if (checkCacheStatus(file)) {
     logger.info(`Invalidating ${file} cache`);
@@ -31,7 +32,7 @@ export async function setDataInBucket(
   const command = new PutObjectCommand({
     Bucket: bucket,
     Key: file,
-    Body: data,
+    Body: JSON.stringify(data),
   });
 
   logger.info(`Setting data in file: ${file}}`);

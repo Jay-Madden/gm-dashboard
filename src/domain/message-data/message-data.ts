@@ -1,10 +1,5 @@
-import { BucketFile, getDataFromBucket } from "@/domain/storage";
-import {
-  Reaction,
-  Message,
-  ReactionCounts,
-  WordOfInterestCount,
-} from "@/domain/message-data/data.types";
+import { BucketFile, getDataFromBucket, setDataInBucket } from "@/domain/storage";
+import { Message, Reaction, ReactionCounts, WordOfInterestCount, } from "@/domain/message-data/message.types";
 import { minutesAgo } from "@/time-helpers";
 import { getUsers } from "@/domain/users/users-data";
 
@@ -126,4 +121,17 @@ export async function getWordsOfInterestCount(
   }
 
   return counts;
+}
+
+export async function uploadData(reactions: Reaction[], messages: Message[]){
+  await uploadMessages(messages);
+  await uploadReactions(reactions);
+}
+
+async function uploadReactions(reactions: Reaction[]) {
+  await setDataInBucket(BucketFile.reactions, reactions);
+}
+
+async function uploadMessages(messages: Message[]) {
+   await setDataInBucket(BucketFile.messages, messages);
 }

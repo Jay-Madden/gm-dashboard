@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { getWordsOfInterestCount } from "@/domain/message-data/message-data";
 import { daysAgo } from "@/time-helpers";
 import { HttpCodes } from "@/http-codes";
-import { WordOfInterestCount } from "@/domain/message-data/data.types";
+import { WordOfInterestCount } from "@/domain/message-data/message.types";
 
 export default async function handler(
   req: NextApiRequest,
